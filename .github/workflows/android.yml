@@ -1,0 +1,28 @@
+name: Android Build Only
+
+on:
+  push:
+    branches: ["main"]
+  workflow_dispatch:
+
+jobs:
+  build-android:
+    runs-on: windows-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: 9.0.x
+
+    - name: Install ONLY Android workload
+      run: dotnet workload install android
+
+    - name: Restore dependencies (Android only)
+      run: dotnet restore
+
+    - name: Build Android project ONLY
+      run: dotnet build project.csproj -c Release -f net9.0-android
