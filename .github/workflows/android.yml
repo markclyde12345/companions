@@ -18,11 +18,11 @@ jobs:
       with:
         dotnet-version: 9.0.x
 
-    - name: Install ONLY Android workload
-      run: dotnet workload install android
+    - name: Install MAUI workload (REQUIRED)
+      run: dotnet workload install maui
 
-    - name: Restore dependencies (Android only)
+    - name: Restore dependencies
       run: dotnet restore
 
-    - name: Build Android project ONLY
+    - name: Build Android only
       run: dotnet build project.csproj -c Release -f net9.0-android
