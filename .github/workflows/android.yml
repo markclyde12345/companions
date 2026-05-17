@@ -13,10 +13,10 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v4
 
-    - name: Setup .NET 8
+    - name: Setup .NET 9
       uses: actions/setup-dotnet@v4
       with:
-        dotnet-version: 8.0.x
+        dotnet-version: 9.0.x
 
     - name: Install MAUI workload
       run: dotnet workload install maui
@@ -25,4 +25,4 @@ jobs:
       run: dotnet restore
 
     - name: Build Android only
-      run: dotnet build project.csproj -c Release -f net8.0-android
+      run: dotnet build project.csproj -c Release -f net9.0-android
